@@ -1,89 +1,93 @@
-$(document).ready(function(){
+$(document).ready(function () {
 	$('.scrollspy').scrollTop();
 	$(".button-collapse").sideNav();
-	$('.tooltipped').tooltip({delay: 50});
+	$('.tooltipped').tooltip({ delay: 50 });
 	$('span.text-change').typed({
-         // array with the "I'm.." text
-        strings: ["UX/UI ", "Website development ", "App development ", "Angular 2+ ", "Ionic 2+", "out of the box ideas"],
-        typeSpeed: 70,
-        backDelay: 10,
-        callback: function () { $(this) }
+		// array with the "I'm.." text
+		strings: ["UX/UI ", "Web development ", "App development ", "Angular 2+ ", "Ionic 2+", "Out of the box thinking ", "Build something better"],
+		typeSpeed: 70,
+		backDelay: 10,
+		callback: function () { $(this) }
 	});
-	$('.smoove').smoove({opacity:'0', moveY: '100px',});
-	$('.smooVert').smoove({opacity:'0', moveY: '100px',});
-	$('.tool').smoove({opacity:'0',
-    moveZ:"-500px",
-    moveY: "100px",
-    rotateX: "90deg",})
-	$('.work').smoove({ offset  : '-25%',
-    moveX   : '-100px',
-    moveY   : '100px',})
-  });
-window.addEventListener('load', function() {
+	$('.smoove').smoove({ opacity: '0', moveY: '100px', });
+	$('.smooVert').smoove({ opacity: '0', moveY: '100px', });
+	$('.tool').smoove({
+		opacity: '0',
+		moveZ: "-500px",
+		moveY: "100px",
+		rotateX: "90deg",
+	})
+	$('.work').smoove({
+		offset: '-25%',
+		moveX: '-100px',
+		moveY: '100px',
+	})
+});
+window.addEventListener('load', function () {
 	var ctx = document.getElementById('background').getContext('2d');
 	//gradient
 	var options =
-	{
-		resolution: 1,
-		gradient:
 		{
-			resolution: 4,
-			smallRadius: 0,
-			hue:
-			{
-				min: 0,
-				max: 360
-			},
-			saturation:
-			{
-				min: 40,
-				max: 80
-			},
-			lightness:
-			{
-				min: 25,
-				max: 35
-			}
-		},
-		bokeh:
-		{
-			count: 30,
-			size:
-			{
-				min: 0.1,
-				max: 0.3
-			},
-			alpha:
-			{
-				min: 0.05,
-				max: 0.4
-			},
-			jitter:
-			{
-				x: 0.3,
-				y: 0.3
-			}
-		},
-		speed:
-		{
-			min: 0.0001,
-			max: 0.001
-		},
-		debug:
-		{
-			strokeBokeh: false,
-			showFps: false
-		}
-	};
+			resolution: 1,
+			gradient:
+				{
+					resolution: 4,
+					smallRadius: 0,
+					hue:
+						{
+							min: 0,
+							max: 360
+						},
+					saturation:
+						{
+							min: 40,
+							max: 80
+						},
+					lightness:
+						{
+							min: 25,
+							max: 35
+						}
+				},
+			bokeh:
+				{
+					count: 30,
+					size:
+						{
+							min: 0.1,
+							max: 0.3
+						},
+					alpha:
+						{
+							min: 0.05,
+							max: 0.4
+						},
+					jitter:
+						{
+							x: 0.3,
+							y: 0.3
+						}
+				},
+			speed:
+				{
+					min: 0.0001,
+					max: 0.001
+				},
+			debug:
+				{
+					strokeBokeh: false,
+					showFps: false
+				}
+		};
 	var mobile =
-	{
-		force: false,
-		resolution: 0.5,
-		bokeh:
 		{
-			count: 6
-		}
-	};
+			force: false,
+			resolution: 0.5,
+			bokeh:
+				{
+					count: 6
+				}
+		};
 	//buffers
 	var gradientBuffer = document.createElement('canvas').getContext('2d');
 	var circleBuffer = document.createElement('canvas').getContext('2d');
@@ -112,33 +116,33 @@ window.addEventListener('load', function() {
 	}
 	function newColor() {
 		return new Color(
-				rand(options.gradient.hue),
-				rand(options.gradient.saturation),
-				rand(options.gradient.lightness)
-				);
+			rand(options.gradient.hue),
+			rand(options.gradient.saturation),
+			rand(options.gradient.lightness)
+		);
 	}
 
-	function isMobile() { 
+	function isMobile() {
 		return (
-				mobile.force
-				|| navigator.userAgent.match(/Android/i)
-				|| navigator.userAgent.match(/webOS/i)
-				|| navigator.userAgent.match(/iPhone/i)
-				|| navigator.userAgent.match(/iPad/i)
-				|| navigator.userAgent.match(/iPod/i)
-				|| navigator.userAgent.match(/BlackBerry/i)
-				|| navigator.userAgent.match(/Windows Phone/i)
-			   );
+			mobile.force
+			|| navigator.userAgent.match(/Android/i)
+			|| navigator.userAgent.match(/webOS/i)
+			|| navigator.userAgent.match(/iPhone/i)
+			|| navigator.userAgent.match(/iPad/i)
+			|| navigator.userAgent.match(/iPod/i)
+			|| navigator.userAgent.match(/BlackBerry/i)
+			|| navigator.userAgent.match(/Windows Phone/i)
+		);
 	}
 
-	window.requestAnimFrame = (function(callback) {
+	window.requestAnimFrame = (function (callback) {
 		if (isMobile())
-			return function(callback) {
+			return function (callback) {
 				window.setTimeout(callback, 1000 / 10);
 			};
 		return window.requestAnimationFrame || window.webkitRequestAnimationFrame
 			|| window.mozRequestAnimationFrame || window.oRequestAnimationFrame
-			|| window.msRequestAnimationFrame || function(callback) {
+			|| window.msRequestAnimationFrame || function (callback) {
 				window.setTimeout(callback, 1000 / 60);
 			};
 	})();
@@ -149,8 +153,8 @@ window.addEventListener('load', function() {
 		this.s = s;
 		this.l = l;
 
-		this.str = function() {
-			return this.h + ", " + this.s + "%, " + this.l +"%";
+		this.str = function () {
+			return this.h + ", " + this.s + "%, " + this.l + "%";
 		}
 	}
 	function ColorPoint(x, y, color) {
@@ -161,10 +165,10 @@ window.addEventListener('load', function() {
 		this.step = 0;
 		this.speed = 0;
 
-		this.color = function() {
+		this.color = function () {
 			return new Color(lerp(this.oldColor.h, this.newColor.h, this.step),
-					lerp(this.oldColor.s, this.newColor.s, this.step),
-					lerp(this.oldColor.l, this.newColor.l, this.step));
+				lerp(this.oldColor.s, this.newColor.s, this.step),
+				lerp(this.oldColor.l, this.newColor.l, this.step));
 		}
 
 	}
@@ -187,16 +191,16 @@ window.addEventListener('load', function() {
 		this.step = 0;
 		this.speed = 0;
 
-		this.x = function() {
+		this.x = function () {
 			return lerp(this.oldX, this.newX, this.step);
 		}
-		this.y = function() {
+		this.y = function () {
 			return lerp(this.oldY, this.newY, this.step);
 		}
-		this.alpha = function() {
+		this.alpha = function () {
 			return lerp(this.oldAlpha, this.newAlpha, this.step);
 		}
-		this.size = function() {
+		this.size = function () {
 			return lerp(this.oldSize, this.newSize, this.step);
 		}
 	}
@@ -240,12 +244,10 @@ window.addEventListener('load', function() {
 		if (isMobile())
 			render();
 	}
-	function softCopy(src, dest)
-	{
+	function softCopy(src, dest) {
 		var i = 0;
 
-		for (var property in src)
-		{
+		for (var property in src) {
 			if (dest.hasOwnProperty(property))
 				if (softCopy(src[property], dest[property]) == 0)
 					dest[property] = src[property];
@@ -262,15 +264,15 @@ window.addEventListener('load', function() {
 
 		resize();
 
-		colorPoints.forEach(function(point) {
+		colorPoints.forEach(function (point) {
 			point.oldColor = newColor();
 			point.newColor = newColor()
-				point.speed = rand(options.speed);
+			point.speed = rand(options.speed);
 		});
 
-		for(i = 0; i < options.bokeh.count; i++) {
+		for (i = 0; i < options.bokeh.count; i++) {
 			circles.push(new BokehCircle(Math.random(), Math.random(),
-						rand(options.bokeh.size), rand(options.bokeh.alpha)));
+				rand(options.bokeh.size), rand(options.bokeh.alpha)));
 			circles[i].newAlpha = rand(options.bokeh.alpha);
 			circles[i].newSize = rand(options.bokeh.size);
 			circles[i].speed = rand(options.speed);
@@ -284,13 +286,13 @@ window.addEventListener('load', function() {
 		var delta = (now - (time || now)) / (1000 / targetFps);
 		time = now;
 
-		if(curFps > 1000) {
+		if (curFps > 1000) {
 			fps = 1000 / (curFps / cntFps);
 			curFps -= 1000;
 			cntFps = 0;
 		}
 
-		colorPoints.forEach(function(point) {
+		colorPoints.forEach(function (point) {
 			point.step += point.speed * delta;
 
 			if (point.step >= 1) {
@@ -303,9 +305,9 @@ window.addEventListener('load', function() {
 			}
 		});
 
-		circles.forEach(function(circle) {
+		circles.forEach(function (circle) {
 			circle.step += circle.speed * delta;
-			if(circle.step >= 1) {
+			if (circle.step >= 1) {
 				circle.step = 0;
 
 				circle.oldX = circle.newX;
@@ -325,18 +327,18 @@ window.addEventListener('load', function() {
 		iterate();
 
 		//draw point gradient to buffer
-		colorPoints.forEach(function(point) {
+		colorPoints.forEach(function (point) {
 			var x = point.x * options.gradient.resolution;
 			var y = point.y * options.gradient.resolution;
 			var grad = gradientBuffer.createRadialGradient(x, y,
-					options.gradient.smallRadius, x, y,
-					options.gradient.resolution);
+				options.gradient.smallRadius, x, y,
+				options.gradient.resolution);
 			grad.addColorStop(0, 'hsla(' + point.color().str() + ', 255)');
 			grad.addColorStop(1, 'hsla(' + point.color().str() + ', 0)');
 
 			gradientBuffer.fillStyle = grad;
 			gradientBuffer.fillRect(0, 0,
-					options.gradient.resolution, options.gradient.resolution);
+				options.gradient.resolution, options.gradient.resolution);
 		});
 
 		//draw gradient from memory
@@ -348,19 +350,19 @@ window.addEventListener('load', function() {
 		if (options.debug.strokeBokeh)
 			ctx.strokeStyle = "yellow";
 
-		circles.forEach(function(circle) {
+		circles.forEach(function (circle) {
 			var size = circle.size() * scale;
 
 			ctx.globalAlpha = circle.alpha();
 			ctx.drawImage(circleBuffer.canvas,
-					circle.x() * w - size / 2, circle.y() * h - size / 2,
-					size, size);
+				circle.x() * w - size / 2, circle.y() * h - size / 2,
+				size, size);
 
-			if(options.debug.strokeBokeh) {
+			if (options.debug.strokeBokeh) {
 				ctx.globalAlpha = 1;
 				ctx.globalCompositeOperation = "source-over";
 				ctx.strokeRect(circle.x() * w - size / 2,
-						circle.y() * h - size / 2, size, size);
+					circle.y() * h - size / 2, size, size);
 				ctx.globalCompositeOperation = "overlay";
 			}
 		});
@@ -368,7 +370,7 @@ window.addEventListener('load', function() {
 
 		//debug info
 		if (options.debug.showFps) {
-			if(fps <= 10) ctx.fillStyle = 'red';
+			if (fps <= 10) ctx.fillStyle = 'red';
 			else ctx.fillStyle = 'yellow';
 
 			ctx.font = "20px sans-serif";
